@@ -23,4 +23,5 @@
     "webpack": "webpack",
     "start": "npm run webpack && nodemon --exec babel-node -- bin/www"
   }
+  
 }
