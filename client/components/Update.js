@@ -15,7 +15,7 @@ class Update extends React.Component {
       description: '',
       status: '',
       month: '',
-      year: '',
+      weekday: '',
       messageFromServer: '',
       modalIsOpen: false
     }
@@ -32,7 +32,7 @@ componentDidMount() {
       description: this.props.implantacion.description,
       status: this.props.implantacion.status,
       month: this.props.implantacion.month,
-      year: this.props.implantacion.year,
+      weekday: this.props.implantacion.weekday,
     });
   }
 openModal() {
@@ -52,9 +52,9 @@ handleSelectChange(e) {
         month: e.target.value
       });
     }
-    if (e.target.name == "year") {
+    if (e.target.name == "weekday") {
       this.setState({
-        year: e.target.value
+        weekday: e.target.value
       });
     }
   }
@@ -80,7 +80,7 @@ update(e) {
         description: e.state.description,
         status: e.state.status,
         month: e.state.month,
-        year: e.state.year
+        weekday: e.state.weekday
       }), {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
@@ -127,13 +127,14 @@ render() {
                       <option value="Nov" id="Nov">November</option>
                       <option value="Dec" id="Dec">December</option>
                 </select>
-            <label for="year">Year:</label><select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-                      <option value="2015" id="17">2015</option>
-                      <option value="2016" id="17">2016</option>
-                      <option value="2017" id="17">2017</option>
-                      <option value="2018" id="18">2018</option>
-                      <option value="2019" id="19">2019</option>
-                      <option value="2020" id="20">2020</option>
+            <label for="weekday">Weekday:</label><select id="weekday" name="weekday" value={this.state.weekday} onChange={this.handleSelectChange}>
+                    <option value="Lunes" id="40">Lunes</option>
+                    <option value="Martes" id="41">Martes</option>
+                    <option value="Miercoles" id="42">Miercoles</option>
+                    <option value="Jueves" id="43">Jueves</option>
+                    <option value="Viernes" id="44">Viernes</option>
+                    <option value="Sabado" id="45">Sabado</option>
+                    <option value="Domingo" id="46">Domingo</option>
                 </select>
           </fieldset>
           <div className='button-center'>

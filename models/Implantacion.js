@@ -6,7 +6,7 @@ var implantacionSchema = new Schema({
   description: String,
   status: String,
   month: String,
-  year: Number
+  weekday: String
 });
 
 module.exports = mongoose.model('Implantacion', implantacionSchema);
