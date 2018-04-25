@@ -12,7 +12,7 @@ router.route('/insert')
 .post(function(req,res) {
  var implantacion = new Implantacion();
   implantacion.description = req.body.desc;
-  implantacion.status = req.body.statu;
+  implantacion.status = req.body.status;
   implantacion.month = req.body.month;
   implantacion.weekday = req.body.weekday;
 
@@ -27,7 +27,7 @@ router.route('/update')
 .post(function(req, res) {
  const doc = {
      description: req.body.desc,
-     status: req.body.statu,
+     status: req.body.status,
      month: req.body.month,
      weekday: req.body.weekday
  };

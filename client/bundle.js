@@ -6874,7 +6874,7 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-    _this.state = { selectedMonth: 'All', selectedWeekday: 'Lunes', data: [], activeTab: 'Lunes' };
+    _this.state = { selectedStatus: 'All', selectedMonth: 'All', selectedWeekday: 'Lunes', data: [], activeTab: 'Lunes' };
     _this.getData = _this.getData.bind(_this);
     return _this;
   }
@@ -6992,7 +6992,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   { className: 'button-col' },
-                  exp.statu
+                  exp.status
                 ),
                 _react2.default.createElement(
                   'td',
@@ -34807,8 +34807,8 @@ var Add = function (_React$Component) {
         modalIsOpen: false,
         description: '',
         status: '',
-        month: 'Jan',
-        week: 'Lunes',
+        month: '',
+        week: '',
         messageFromServer: ''
       });
     }
@@ -34859,6 +34859,11 @@ var Add = function (_React$Component) {
           weekday: e.target.value
         });
       }
+      if (e.target.name == 'status') {
+        this.setState({
+          status: e.target.value
+        });
+      }
     }
   }, {
     key: 'onClick',
@@ -34870,7 +34875,7 @@ var Add = function (_React$Component) {
     value: function insertNewImplantacion(e) {
       _axios2.default.post('/insert', querystring.stringify({
         desc: e.state.description,
-        statu: e.state.status,
+        status: e.state.status,
         month: e.state.month,
         weekday: e.state.weekday
       }), {
@@ -34938,34 +34943,34 @@ var Add = function (_React$Component) {
               _react2.default.createElement(
                 'label',
                 { 'for': 'status' },
-                'status:'
+                'Status:'
               ),
               _react2.default.createElement(
                 'select',
                 { id: 'status', name: 'status', value: this.state.status, onChange: this.handleSelectChange },
                 _react2.default.createElement(
                   'option',
-                  { value: 'Planificada', id: '30' },
+                  { value: 'Planificada', id: 'Planificada' },
                   'Planificada'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'En vuelo', id: '31' },
+                  { value: 'En vuelo', id: 'En vuelo' },
                   'En vuelo'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'En pruebas', id: '32' },
+                  { value: 'En pruebas', id: 'En pruebas' },
                   'En pruebas'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'Realizada OK', id: '33' },
+                  { value: 'Realizada OK', id: 'Realizada OK' },
                   'Realizada OK'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'CANCELADA', id: '34' },
+                  { value: 'CANCELADA', id: 'CANCELADA' },
                   'CANCELADA'
                 )
               ),
@@ -48070,6 +48075,11 @@ var Update = function (_React$Component) {
           weekday: e.target.value
         });
       }
+      if (e.target.name == "status") {
+        this.setState({
+          status: e.target.value
+        });
+      }
     }
   }, {
     key: 'handleTextChange',
@@ -48077,11 +48087,6 @@ var Update = function (_React$Component) {
       if (e.target.name == "description") {
         this.setState({
           description: e.target.value
-        });
-      }
-      if (e.target.name == "status") {
-        this.setState({
-          status: e.target.value
         });
       }
     }
@@ -48150,34 +48155,34 @@ var Update = function (_React$Component) {
               _react2.default.createElement(
                 'label',
                 { 'for': 'status' },
-                'status:'
+                'Status:'
               ),
               _react2.default.createElement(
                 'select',
                 { id: 'status', name: 'status', value: this.state.status, onChange: this.handleSelectChange },
                 _react2.default.createElement(
                   'option',
-                  { value: 'Planificada', id: '30' },
+                  { value: 'Planificada', id: 'Planificada' },
                   'Planificada'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'En vuelo', id: '31' },
+                  { value: 'En vuelo', id: 'En vuelo' },
                   'En vuelo'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'En pruebas', id: '32' },
+                  { value: 'En pruebas', id: 'En pruebas' },
                   'En pruebas'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'Realizada OK', id: '33' },
+                  { value: 'Realizada OK', id: 'Realizada OK' },
                   'Realizada OK'
                 ),
                 _react2.default.createElement(
                   'option',
-                  { value: 'CANCELADA', id: '34' },
+                  { value: 'CANCELADA', id: 'CANCELADA' },
                   'CANCELADA'
                 )
               ),

@@ -15,7 +15,7 @@ export default class App extends React.Component {
 
 constructor() {
     super();
-  this.state = {selectedMonth:'All', selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
+  this.state = {selectedStatus:'All', selectedMonth:'All', selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
     this.getData = this.getData.bind(this);
   }
 
@@ -70,6 +70,7 @@ render() {
         <Add selectedMonth={this.state.selectedMonth} selectedWeekday={this.state.selectedWeekday} />
         
         <table>
+          
           <thead>
             <tr><th></th>
                 <th className='desc-col'>Description</th>
@@ -80,12 +81,13 @@ render() {
                 <th className='button-col'>Delete</th>
             </tr>
           </thead>
+
           <tbody>
             {
               this.state.data.map(function(exp){
                 return  <tr><td className='counterCell'></td>
                             <td className='desc-col'>{exp.description}</td>
-                            <td className='button-col'>{exp.statu}</td>
+                            <td className='button-col'>{exp.status}</td>
                             <td className='button-col'>{exp.month}</td>
                             <td className='button-col'>{exp.weekday}</td>
                             <td className='button-col'><Update implantacion={exp} /></td>
@@ -94,6 +96,7 @@ render() {
               })
             }
             </tbody>
+        
         </table>
       </div>
     );

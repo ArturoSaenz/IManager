@@ -31,12 +31,12 @@
 
 
 .button-col {
-  width:3000px;
+  width:150px;
   text-align:center;
 }
 
 .desc-col {
- width:3000px;
+ width:3600px;
  text-align:left;
  height: 25px;
 }
@@ -50,7 +50,7 @@ table {
 }
 .counterCell {
  text-align: center;
- width:50px;
+ width:100px;
 }
 .button-center {
  text-align: center;
@@ -91,3 +91,9 @@ fieldset{
 .closebtn{
    float:right;
  }
+ tr {
+    border: 1px solid #fafafa;;
+    border-bottom: 2px solid #ddd;
+    display: block;
+    }
+  }

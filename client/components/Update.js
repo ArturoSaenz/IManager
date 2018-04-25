@@ -57,16 +57,16 @@ handleSelectChange(e) {
         weekday: e.target.value
       });
     }
+    if (e.target.name == "status") {
+      this.setState({
+        status: e.target.value
+      });
+    }
   }
 handleTextChange(e) {
     if (e.target.name == "description") {
       this.setState({
         description: e.target.value
-      });
-    }
-if (e.target.name == "status") {
-      this.setState({
-        status: e.target.value
       });
     }
   }
@@ -104,16 +104,20 @@ render() {
           <Link to={{pathname: '/', search: '' }} style={{ textDecoration: 'none' }}>
             <Button bsStyle="danger" bsSize="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
           </Link><br/>
+
           <fieldset>
-            <label for="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input>
-            <label for="status">status:</label><select id="status" name="status" value={this.state.status} onChange={this.handleSelectChange}>
-                        <option value="Planificada" id="30">Planificada</option>
-                        <option value="En vuelo" id="31">En vuelo</option>
-                        <option value="En pruebas" id="32">En pruebas</option>
-                        <option value="Realizada OK" id="33">Realizada OK</option>
-                        <option value="CANCELADA" id="34">CANCELADA</option>
+            <label for="description">Description:</label>
+                  <input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input>
+            <label for="status">Status:</label>
+                  <select id="status" name="status" value={this.state.status} onChange={this.handleSelectChange}>
+                      <option value="Planificada" id="Planificada">Planificada</option>
+                      <option value="En vuelo" id="En vuelo">En vuelo</option>
+                      <option value="En pruebas" id="En pruebas">En pruebas</option>
+                      <option value="Realizada OK" id="Realizada OK">Realizada OK</option>
+                      <option value="CANCELADA" id="CANCELADA">CANCELADA</option>
                   </select>
-            <label for="month">Month:</label><select id="month" name="month" value={this.state.month} onChange={this.handleSelectChange}>
+            <label for="month">Month:</label>
+                  <select id="month" name="month" value={this.state.month} onChange={this.handleSelectChange}>
                       <option value="Jan" id="Jan">January</option>
                       <option value="Feb" id="Feb">Febrary</option>
                       <option value="Mar" id="Mar">March</option>
@@ -127,7 +131,8 @@ render() {
                       <option value="Nov" id="Nov">November</option>
                       <option value="Dec" id="Dec">December</option>
                 </select>
-            <label for="weekday">Weekday:</label><select id="weekday" name="weekday" value={this.state.weekday} onChange={this.handleSelectChange}>
+            <label for="weekday">Weekday:</label>
+                <select id="weekday" name="weekday" value={this.state.weekday} onChange={this.handleSelectChange}>
                     <option value="Lunes" id="40">Lunes</option>
                     <option value="Martes" id="41">Martes</option>
                     <option value="Miercoles" id="42">Miercoles</option>
