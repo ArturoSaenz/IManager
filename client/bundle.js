@@ -35044,7 +35044,7 @@ var Add = function (_React$Component) {
               _react2.default.createElement(
                 'label',
                 { 'for': 'weekday' },
-                'Year:'
+                'Weekday:'
               ),
               _react2.default.createElement(
                 'select',
@@ -35125,7 +35125,7 @@ var Add = function (_React$Component) {
               ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: { pathname: '/', search: '' }, style: { textDecoration: 'none' } },
+                { to: { pathname: '/', search: 'weekday=' + this.state.weekday }, style: { textDecoration: 'none' } },
                 _react2.default.createElement(
                   _reactBootstrap.Button,
                   { bsStyle: 'success', bsSize: 'mini', onClick: this.closeModal },

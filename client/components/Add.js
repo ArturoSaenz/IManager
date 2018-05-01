@@ -153,7 +153,7 @@ render() {
                           <option value="Nov" id="Nov">November</option>
                           <option value="Dec" id="Dec">December</option>
                        </select>
-                     <label for="weekday">Year:</label><select id="weekday" name="weekday" value={this.state.weekday} onChange={this.handleSelectChange}>
+                     <label for="weekday">Weekday:</label><select id="weekday" name="weekday" value={this.state.weekday} onChange={this.handleSelectChange}>
                           <option value="Lunes" id="40">Lunes</option>
                           <option value="Martes" id="41">Martes</option>
                           <option value="Miercoles" id="42">Miercoles</option>
@@ -184,7 +184,7 @@ render() {
         className="Modal">
         <div className='button-center'>
             <h3>{this.state.messageFromServer}</h3>
-            <Link to={{pathname: '/', search: '' }} style={{ textDecoration: 'none' }}>
+            <Link to={{pathname: '/', search: 'weekday='+this.state.weekday }} style={{ textDecoration: 'none' }}>
             <Button bsStyle="success" bsSize="mini" onClick={this.closeModal}>Close the Dialog</Button>
             </Link>
         </div>
