@@ -12,7 +12,10 @@ constructor(){
  }
 
  render(){
-   return <Link to={{pathname: '/', search: '?month=All&weekday='+this.props.weekday }} >
+ //YearTabsRouter returns a Link that renders the App component (using the route we created earlier) with weekday sent in as a prop in search.
+ //Whenever this link will be clicked, App will be rendered and the implantaciones of the weekday sent in search will be loaded.
+ //  return <Link to={{pathname: '/', search: '?month=All&weekday='+this.props.weekday }} >
+   return <Link to={{pathname: '/', search: '?weekday='+this.props.weekday }} >
      <p style={this.state.style}>{this.props.weekday}</p>
     </Link>
  }

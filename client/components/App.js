@@ -5,9 +5,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+
 import Add from './Add';
 import Update from './Update';
 import Delete from './Delete';
+
 import { Tab, Tabs } from 'react-bootstrap';
 import WeekdayTabsRouter from './tabs/weekdayTabsRouter';
 
@@ -15,7 +17,8 @@ export default class App extends React.Component {
 
 constructor() {
     super();
-  this.state = {selectedStatus:'All', selectedMonth:'All', selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
+//    this.state = {selectedStatus:'All', selectedMonth:'All', selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
+    this.state = {selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
     this.getData = this.getData.bind(this);
   }
 
@@ -28,6 +31,7 @@ componentWillReceiveProps(nextProps) {
     this.setState({activeTab: searchObj.weekday});
     this.setState({selectedWeekday: searchObj.weekday});
     this.setState({selectedMonth: searchObj.month});
+
 this.getData(this, searchObj.weekday, searchObj.month);
   }else{
       this.getData(this, 'Lunes', 'All');
@@ -45,7 +49,7 @@ handleSelect(selectedTab) {
   }
 
 getData(ev, weekday, month){
-    axios.get('/getAll?month='+month+'&weekday='+weekday)
+    axios.get('/getAll?weekday='+weekday)
       .then(function(response) {
         ev.setState({data: response.data});
         ev.setState({selectedWeekday: weekday});
@@ -91,7 +95,7 @@ render() {
                             <td className='button-col'>{exp.month}</td>
                             <td className='button-col'>{exp.weekday}</td>
                             <td className='button-col'><Update implantacion={exp} /></td>
-                            <td className='button-col'><Delete id={exp._id} implantacion={exp} /></td>
+                            <td className='button-col'><Delete implantacion={exp} /></td>
                         </tr>
               })
             }

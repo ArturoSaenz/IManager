@@ -26,7 +26,7 @@ implantacion.save(function(err) {
 router.route('/update')
 .post(function(req, res) {
  const doc = {
-     description: req.body.desc,
+     description: req.body.description,
      status: req.body.status,
      month: req.body.month,
      weekday: req.body.weekday

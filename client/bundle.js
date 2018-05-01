@@ -6872,9 +6872,10 @@ var App = function (_React$Component) {
   function App() {
     _classCallCheck(this, App);
 
+    //    this.state = {selectedStatus:'All', selectedMonth:'All', selectedWeekday: 'Lunes', data: [], activeTab:'Lunes'};
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-    _this.state = { selectedStatus: 'All', selectedMonth: 'All', selectedWeekday: 'Lunes', data: [], activeTab: 'Lunes' };
+    _this.state = { selectedWeekday: 'Lunes', data: [], activeTab: 'Lunes' };
     _this.getData = _this.getData.bind(_this);
     return _this;
   }
@@ -6889,6 +6890,7 @@ var App = function (_React$Component) {
         this.setState({ activeTab: searchObj.weekday });
         this.setState({ selectedWeekday: searchObj.weekday });
         this.setState({ selectedMonth: searchObj.month });
+
         this.getData(this, searchObj.weekday, searchObj.month);
       } else {
         this.getData(this, 'Lunes', 'All');
@@ -6910,7 +6912,7 @@ var App = function (_React$Component) {
   }, {
     key: 'getData',
     value: function getData(ev, weekday, month) {
-      _axios2.default.get('/getAll?month=' + month + '&weekday=' + weekday).then(function (response) {
+      _axios2.default.get('/getAll?weekday=' + weekday).then(function (response) {
         ev.setState({ data: response.data });
         ev.setState({ selectedWeekday: weekday });
         ev.setState({ selectedMonth: month });
@@ -7012,7 +7014,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   { className: 'button-col' },
-                  _react2.default.createElement(_Delete2.default, { id: exp._id, implantacion: exp })
+                  _react2.default.createElement(_Delete2.default, { implantacion: exp })
                 )
               );
             })
@@ -34808,7 +34810,7 @@ var Add = function (_React$Component) {
         description: '',
         status: '',
         month: '',
-        week: '',
+        weekday: '',
         messageFromServer: ''
       });
     }
@@ -34896,11 +34898,6 @@ var Add = function (_React$Component) {
           description: e.target.value
         });
       }
-      if (e.target.name == "status") {
-        this.setState({
-          status: e.target.value
-        });
-      }
     }
   }, {
     key: 'render',
@@ -34920,10 +34917,11 @@ var Add = function (_React$Component) {
               isOpen: this.state.modalIsOpen,
               onRequestClose: this.closeModal,
               contentLabel: 'Add Implantacion',
-              className: 'Modal' },
+              className: 'Modal'
+            },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: { pathname: '/', search: '' }, style: { textDecoration: 'none' } },
+              { to: { pathname: '/', search: '?weekday=' + this.state.weekday }, style: { textDecoration: 'none' } },
               _react2.default.createElement(
                 _reactBootstrap.Button,
                 { bsStyle: 'danger', bsSize: 'mini', onClick: this.closeModal },
@@ -48007,7 +48005,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //client/components/Update.js
 
-
 var querystring = __webpack_require__(167);
 
 var Update = function (_React$Component) {
@@ -48045,6 +48042,16 @@ var Update = function (_React$Component) {
         status: this.props.implantacion.status,
         month: this.props.implantacion.month,
         weekday: this.props.implantacion.weekday
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        id: nextProps.implantacion._id,
+        description: nextProps.implantacion.description,
+        month: nextProps.implantacion.month,
+        weekday: nextProps.implantacion.weekday
       });
     }
   }, {
@@ -48135,7 +48142,7 @@ var Update = function (_React$Component) {
               className: 'Modal' },
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: { pathname: '/', search: '' }, style: { textDecoration: 'none' } },
+              { to: { pathname: '/', search: '?weekday=' + this.state.weekday }, style: { textDecoration: 'none' } },
               _react2.default.createElement(
                 _reactBootstrap.Button,
                 { bsStyle: 'danger', bsSize: 'mini', onClick: this.closeModal },
@@ -48339,7 +48346,7 @@ var Update = function (_React$Component) {
               ),
               _react2.default.createElement(
                 _reactRouterDom.Link,
-                { to: { pathname: '/', search: '' }, style: { textDecoration: 'none' } },
+                { to: { pathname: '/', search: '?weekday=' + this.state.weekday }, style: { textDecoration: 'none' } },
                 _react2.default.createElement(
                   _reactBootstrap.Button,
                   { bsStyle: 'success', bsSize: 'mini', onClick: this.closeModal },
@@ -48395,7 +48402,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //client/components/Delete.js
 
-
 var Delete = function (_React$Component) {
   _inherits(Delete, _React$Component);
 
@@ -48404,7 +48410,7 @@ var Delete = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Delete.__proto__ || Object.getPrototypeOf(Delete)).call(this));
 
-    _this.state = { id: '' };
+    _this.state = { id: '', month: '', weekday: '' };
     _this.onClick = _this.onClick.bind(_this);
     _this.delete = _this.delete.bind(_this);
     return _this;
@@ -48414,7 +48420,18 @@ var Delete = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.setState({
-        id: this.props.implantacion._id
+        id: this.props.implantacion._id,
+        month: this.props.implantacion.month,
+        weekday: this.props.implantacion.weekday
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        id: nextProps.implantacion._id,
+        month: nextProps.implantacion.month,
+        weekday: nextProps.implantacion.weekday
       });
     }
   }, {
@@ -48435,7 +48452,7 @@ var Delete = function (_React$Component) {
         { bsStyle: 'danger', bsSize: 'small', onClick: this.onClick },
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: { pathname: '/', search: '' }, style: { textDecoration: 'none' } },
+          { to: { pathname: '/', search: '?weekday=' + this.state.weekday }, style: { textDecoration: 'none' } },
           _react2.default.createElement('span', { className: 'glyphicon glyphicon-remove' })
         )
       );
@@ -48496,9 +48513,12 @@ var WeekdayTabsRouter = function (_React$Component) {
   _createClass(WeekdayTabsRouter, [{
     key: 'render',
     value: function render() {
+      //YearTabsRouter returns a Link that renders the App component (using the route we created earlier) with weekday sent in as a prop in search.
+      //Whenever this link will be clicked, App will be rendered and the implantaciones of the weekday sent in search will be loaded.
+      //  return <Link to={{pathname: '/', search: '?month=All&weekday='+this.props.weekday }} >
       return _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: { pathname: '/', search: '?month=All&weekday=' + this.props.weekday } },
+        { to: { pathname: '/', search: '?weekday=' + this.props.weekday } },
         _react2.default.createElement(
           'p',
           { style: this.state.style },
