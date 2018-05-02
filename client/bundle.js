@@ -34909,6 +34909,7 @@ var Add = function (_React$Component) {
           _react2.default.createElement(
             _reactBootstrap.Button,
             { bsStyle: 'success', bsSize: 'small', onClick: this.openModal },
+            'Add New Implantacion ',
             _react2.default.createElement('span', { className: 'glyphicon glyphicon-plus' })
           ),
           _react2.default.createElement(

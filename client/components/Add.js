@@ -7,6 +7,9 @@ import {Link} from 'react-router-dom';
 
 var querystring = require('querystring');
 
+//When the App component first renders, its isOpen state is false, so the Modal is not rendered.
+//Ventana modal
+
 class Add extends React.Component {
 constructor() {
       super();
@@ -119,7 +122,7 @@ render() {
    if(this.state.messageFromServer == ''){
       return (
         <div>
-          <Button bsStyle="success" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span></Button>
+          <Button bsStyle="success" bsSize="small" onClick={this.openModal}>Add New Implantacion <span className="glyphicon glyphicon-plus"></span></Button>
               <Modal
                 isOpen={this.state.modalIsOpen}
                 onRequestClose={this.closeModal}
